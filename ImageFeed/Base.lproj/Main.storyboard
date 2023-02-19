@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fcE-lz-Qgs">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -88,20 +88,114 @@
                             <constraint firstAttribute="bottom" secondItem="S0c-Rx-Dly" secondAttribute="bottom" id="uV4-zh-2Uo"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="Amc-fv-ReN"/>
                     <connections>
                         <outlet property="tableView" destination="S0c-Rx-Dly" id="mDa-wx-TPt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.40000000000001" y="-27.339901477832512"/>
+            <point key="canvasLocation" x="-626" y="-715"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="xEC-fU-HOe">
+            <objects>
+                <viewController title="Profile" id="lmD-W1-Qwf" customClass="ProfileViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nw6-r2-H1i">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoUser" translatesAutoresizingMaskIntoConstraints="NO" id="HKO-4p-eWJ" userLabel="photoUserImage">
+                                <rect key="frame" x="16" y="79" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="5HD-vZ-0ln"/>
+                                    <constraint firstAttribute="width" constant="70" id="Vwd-mM-yYk"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ax5-mr-yTw" userLabel="exitProfileButton">
+                                <rect key="frame" x="339" y="103" width="20" height="22"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="exitProfile"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Екатерина Новикова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsg-lY-Fif" userLabel="fullNameUserLabel">
+                                <rect key="frame" x="16" y="157" width="174.33333333333334" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" name="YP_White"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, world!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VY3-gh-Df8" userLabel="messageTextUserLabel">
+                                <rect key="frame" x="16" y="215" width="94.666666666666671" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="YP_White"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ekaterina_now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wce-nh-KDd" userLabel="nicknameUserLabel">
+                                <rect key="frame" x="15.999999999999993" y="186" width="126.33333333333331" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="YP_Gray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tvg-nc-tQZ"/>
+                        <color key="backgroundColor" name="YP_Black"/>
+                        <constraints>
+                            <constraint firstItem="Ax5-mr-yTw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HKO-4p-eWJ" secondAttribute="trailing" constant="8" symbolic="YES" id="26M-t9-Lba"/>
+                            <constraint firstItem="HKO-4p-eWJ" firstAttribute="leading" secondItem="tsg-lY-Fif" secondAttribute="leading" id="3ad-OU-2yO"/>
+                            <constraint firstItem="Tvg-nc-tQZ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tsg-lY-Fif" secondAttribute="trailing" symbolic="YES" id="6Yq-H7-GSl"/>
+                            <constraint firstItem="Ax5-mr-yTw" firstAttribute="trailing" secondItem="nw6-r2-H1i" secondAttribute="trailingMargin" id="9fh-fl-ueN"/>
+                            <constraint firstItem="Ax5-mr-yTw" firstAttribute="top" secondItem="Tvg-nc-tQZ" secondAttribute="top" constant="56" id="BeR-Tj-Ilo"/>
+                            <constraint firstItem="VY3-gh-Df8" firstAttribute="top" secondItem="wce-nh-KDd" secondAttribute="bottom" constant="8" id="CpC-qR-79n"/>
+                            <constraint firstItem="HKO-4p-eWJ" firstAttribute="top" secondItem="Tvg-nc-tQZ" secondAttribute="top" constant="32" id="KMk-9i-fjr"/>
+                            <constraint firstItem="Tvg-nc-tQZ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wce-nh-KDd" secondAttribute="trailing" symbolic="YES" id="M8A-Tz-l9w"/>
+                            <constraint firstItem="HKO-4p-eWJ" firstAttribute="leading" secondItem="wce-nh-KDd" secondAttribute="leading" id="MwA-a6-4DB"/>
+                            <constraint firstItem="VY3-gh-Df8" firstAttribute="leading" secondItem="wce-nh-KDd" secondAttribute="leading" id="PD3-Ck-hFL"/>
+                            <constraint firstItem="Tvg-nc-tQZ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VY3-gh-Df8" secondAttribute="trailing" symbolic="YES" id="ZYs-mO-Wfi"/>
+                            <constraint firstItem="HKO-4p-eWJ" firstAttribute="leading" secondItem="nw6-r2-H1i" secondAttribute="leadingMargin" id="aGg-V7-yRW"/>
+                            <constraint firstItem="wce-nh-KDd" firstAttribute="top" secondItem="tsg-lY-Fif" secondAttribute="bottom" constant="8" id="pIj-JV-9Mp"/>
+                            <constraint firstItem="tsg-lY-Fif" firstAttribute="top" secondItem="HKO-4p-eWJ" secondAttribute="bottom" constant="8" id="xnA-g7-mui"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="tab_profile_active" id="cW9-3h-32o"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D4Z-TQ-oGj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-626.15384615384619" y="-27.014218009478672"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="UZP-QD-Ygp">
+            <objects>
+                <tabBarController id="fcE-lz-Qgs" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nQZ-Wh-E7Y">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="YP_White"/>
+                        <tabBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" name="YP_Black"/>
+                        </tabBarAppearance>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Ujp-no-pwa"/>
+                        <segue destination="lmD-W1-Qwf" kind="relationship" relationship="viewControllers" id="OPP-Z7-vbt"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gnZ-f2-cNk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1559" y="-344"/>
         </scene>
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
         <image name="Favorites Yes Active" width="29.333333969116211" height="26"/>
+        <image name="exitProfile" width="20" height="22"/>
+        <image name="photoUser" width="70" height="70"/>
+        <image name="tab_editorial_active" width="20" height="22"/>
+        <image name="tab_profile_active" width="24" height="24"/>
         <namedColor name="YP_Black">
             <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="YP_Gray">
+            <color red="0.68199998140335083" green="0.68599998950958252" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="YP_White">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
