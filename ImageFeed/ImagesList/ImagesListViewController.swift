@@ -40,7 +40,6 @@ extension ImagesListViewController: UITableViewDelegate {
         performSegue(withIdentifier: ShowSingleImageSegueIdentifier, sender: indexPath)
     } // Этот метод отвечает за действия, которые будут выполнены при тапе по ячейке таблицы
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let image = UIImage(named: photosName[indexPath.row]) else {
             return 0
