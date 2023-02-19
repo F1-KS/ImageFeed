@@ -49,14 +49,34 @@
                                     <action selector="didTapBackButton" destination="9Hv-Eg-zPP" eventType="touchUpInside" id="seh-ox-Sjq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7K-6S-WKs" userLabel="sharingButton">
+                                <rect key="frame" x="162.66666666666666" y="714" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="HCV-Vg-2VD"/>
+                                    <constraint firstAttribute="height" constant="50" id="Tih-GI-vdx"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="Sharing"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapShareButton:" destination="9Hv-Eg-zPP" eventType="touchUpInside" id="CVF-H6-vLa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZN6-tH-ifa"/>
                         <color key="backgroundColor" name="YP_Black"/>
                         <constraints>
+                            <constraint firstItem="ZN6-tH-ifa" firstAttribute="bottom" secondItem="k7K-6S-WKs" secondAttribute="bottom" constant="14" id="13i-o0-Mff"/>
                             <constraint firstItem="0wT-3o-uZV" firstAttribute="trailing" secondItem="ZN6-tH-ifa" secondAttribute="trailing" id="4Zs-ci-XIR"/>
                             <constraint firstItem="2Or-HU-pbe" firstAttribute="top" secondItem="ZN6-tH-ifa" secondAttribute="top" constant="4" id="ROO-5h-eOf"/>
                             <constraint firstItem="2Or-HU-pbe" firstAttribute="leading" secondItem="ZN6-tH-ifa" secondAttribute="leading" constant="7" id="cAV-lo-4W2"/>
                             <constraint firstItem="ZN6-tH-ifa" firstAttribute="leading" secondItem="0wT-3o-uZV" secondAttribute="leading" id="lGY-6a-ydM"/>
+                            <constraint firstItem="k7K-6S-WKs" firstAttribute="centerX" secondItem="ZN6-tH-ifa" secondAttribute="centerX" id="qAh-Rc-rDo"/>
                             <constraint firstItem="0wT-3o-uZV" firstAttribute="bottom" secondItem="ZN6-tH-ifa" secondAttribute="bottom" id="xpe-3w-Iv5"/>
                             <constraint firstItem="ZN6-tH-ifa" firstAttribute="top" secondItem="0wT-3o-uZV" secondAttribute="top" id="yck-zz-Vhg"/>
                         </constraints>
@@ -275,6 +295,7 @@
     <resources>
         <image name="0" width="200" height="132"/>
         <image name="Favorites Yes Active" width="29.333333969116211" height="26"/>
+        <image name="Sharing" width="30" height="30"/>
         <image name="chevron.backward" width="9" height="15.666666984558105"/>
         <image name="exitProfile" width="20" height="22"/>
         <image name="photoUser" width="70" height="70"/>
