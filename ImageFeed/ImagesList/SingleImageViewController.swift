@@ -7,7 +7,6 @@ final class SingleImageViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     @IBAction func didTapShareButton(_ sender: Any) {
         let sharingButton = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil)
-        sharingButton.view.backgroundColor = UIColor.magenta // не нашел в как ещё поменять цвет - прошу помощи
         present(sharingButton, animated: true)
     }
     @IBOutlet var scrollView: UIScrollView!

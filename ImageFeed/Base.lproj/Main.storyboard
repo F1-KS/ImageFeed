@@ -26,10 +26,10 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="G22-nZ-hgF" firstAttribute="leading" secondItem="0wT-3o-uZV" secondAttribute="leading" id="5iG-Qk-ZGC"/>
-                                    <constraint firstItem="G22-nZ-hgF" firstAttribute="top" secondItem="0wT-3o-uZV" secondAttribute="top" id="9hU-Ne-yxf"/>
-                                    <constraint firstAttribute="bottom" secondItem="G22-nZ-hgF" secondAttribute="bottom" id="LSb-be-tCz"/>
-                                    <constraint firstAttribute="trailing" secondItem="G22-nZ-hgF" secondAttribute="trailing" id="eMH-72-Jhf"/>
+                                    <constraint firstAttribute="bottom" secondItem="G22-nZ-hgF" secondAttribute="bottom" id="0Fn-ch-NdI"/>
+                                    <constraint firstAttribute="trailing" secondItem="G22-nZ-hgF" secondAttribute="trailing" id="RQm-tC-w80"/>
+                                    <constraint firstItem="G22-nZ-hgF" firstAttribute="leading" secondItem="0wT-3o-uZV" secondAttribute="leading" id="VHf-6k-mV5"/>
+                                    <constraint firstItem="G22-nZ-hgF" firstAttribute="top" secondItem="0wT-3o-uZV" secondAttribute="top" id="taw-qZ-gwy"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="X8d-8a-Xlu"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="eZl-9Y-Pey"/>
