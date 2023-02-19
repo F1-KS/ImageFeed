@@ -19,12 +19,25 @@ final class ImagesListViewController: UIViewController {
     
     @IBOutlet private var tableView: UITableView!
     
-}
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowSingleImage" { // Сначала мы проверяем идентификатор сегвея, поскольку может быть больше одного сегвея, выходящего из нашего контроллера
+            let viewController = segue.destination as! SingleImageViewController // Делаем преобразования типа для свойства segue.destination (оно имеет тип UIViewController) к тому типу, который мы ожидаем (выставлен в Storyboard'е). В нашем случае мы переходим  из таблицы к SingleImageViewController — поэтому такое преобразование типа безопасно. Если окажется, что мы выбрали неправильный сегвей или не настроили его надлежащим образом, то код в данной строчке закрэшится. Мы сразу же узнаем о проблеме и сможем быстро её исправить
+            let indexPath = sender as! IndexPath // Делаем преобразование типа для аргумента sender (мы ожидаем, что там будет indexPath). Более того: мы не сможем сконфигурировать переход верно, если там окажется что-то другое
+            let image = UIImage(named: photosName[indexPath.row]) // Получаем по индексу название картинки и саму картинку из ресурсов приложения;
+            viewController.image = image // Передаём эту картинку в image внутри SingleImageViewController - ! При этом SingleViewController обучен показывать разные картинки
+        } else {
+            super.prepare(for: segue, sender: sender) // Если это неизвестный сегвей, есть вероятность, что он был определён суперклассом (то есть родительским классом). В таком случае мы должны передать ему управление
+        }
+    }
+    
+} // end final class ImagesListViewController
 
 
 extension ImagesListViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { } // Этот метод отвечает за действия, которые будут выполнены при тапе по ячейке таблицы
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowSingleImage", sender: indexPath)
+    } // Этот метод отвечает за действия, которые будут выполнены при тапе по ячейке таблицы
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -52,7 +65,7 @@ extension ImagesListViewController: UITableViewDataSource {
         configCell(for: imageListCell, with: indexPath) // 3
         return imageListCell // 4 Возвращаем ячейку. Возврат будет успешен, так как наша ячейка является наследником UITableViewCell
     }
-        
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photosName.count
     }

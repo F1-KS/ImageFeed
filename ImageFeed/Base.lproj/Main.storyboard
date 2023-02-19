@@ -9,6 +9,32 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--SingleImage-->
+        <scene sceneID="Jgz-7j-lD2">
+            <objects>
+                <viewController title="SingleImage" id="9Hv-Eg-zPP" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Scw-kP-Wzy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="G22-nZ-hgF">
+                                <rect key="frame" x="0.0" y="97" width="375" height="632"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="YP_Black"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZN6-tH-ifa"/>
+                        <color key="backgroundColor" name="YP_Black"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6yc-Ry-DJI"/>
+                    <connections>
+                        <outlet property="imageView" destination="G22-nZ-hgF" id="pop-B8-U7N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x59-zQ-abe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1208.8" y="-715.27093596059115"/>
+        </scene>
         <!--ImageList-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -88,14 +114,15 @@
                             <constraint firstAttribute="bottom" secondItem="S0c-Rx-Dly" secondAttribute="bottom" id="uV4-zh-2Uo"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="Amc-fv-ReN"/>
+                    <navigationItem key="navigationItem" id="Yqq-Zx-uQm"/>
                     <connections>
                         <outlet property="tableView" destination="S0c-Rx-Dly" id="mDa-wx-TPt"/>
+                        <segue destination="9Hv-Eg-zPP" kind="show" identifier="ShowSingleImage" id="CUB-g4-Dn7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-626" y="-715"/>
+            <point key="canvasLocation" x="316" y="-715.27093596059115"/>
         </scene>
         <!--Profile-->
         <scene sceneID="xEC-fU-HOe">
@@ -169,19 +196,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="YP_White"/>
                         <color key="selectedImageTintColor" name="YP_White"/>
                         <tabBarAppearance key="standardAppearance">
                             <color key="backgroundColor" name="YP_Black"/>
                         </tabBarAppearance>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Ujp-no-pwa"/>
+                        <segue destination="WOV-Uf-ddW" kind="relationship" relationship="viewControllers" id="Ujp-no-pwa"/>
                         <segue destination="lmD-W1-Qwf" kind="relationship" relationship="viewControllers" id="OPP-Z7-vbt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gnZ-f2-cNk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1559" y="-344"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MuV-4B-ehe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WOV-Uf-ddW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="Amc-fv-ReN"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lmY-IW-rMe">
+                        <rect key="frame" x="0.0" y="47" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="YP_White"/>
+                        <color key="barTintColor" name="YP_White"/>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" name="YP_Black"/>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Fd7-qs-iFt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lcW-ju-uZ2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-626.39999999999998" y="-715.27093596059115"/>
         </scene>
     </scenes>
     <resources>
