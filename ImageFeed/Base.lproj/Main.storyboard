@@ -12,19 +12,38 @@
         <!--SingleImage-->
         <scene sceneID="Jgz-7j-lD2">
             <objects>
-                <viewController title="SingleImage" id="9Hv-Eg-zPP" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SingleImage" modalPresentationStyle="fullScreen" id="9Hv-Eg-zPP" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Scw-kP-Wzy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="G22-nZ-hgF">
-                                <rect key="frame" x="0.0" y="97" width="375" height="632"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="G22-nZ-hgF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" name="YP_Black"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Or-HU-pbe">
+                                <rect key="frame" x="7" y="51" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="X2x-SY-rnw"/>
+                                    <constraint firstAttribute="height" constant="48" id="uH9-vB-YCI"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="chevron.backward"/>
+                                <connections>
+                                    <action selector="didTapBackButton" destination="9Hv-Eg-zPP" eventType="touchUpInside" id="seh-ox-Sjq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZN6-tH-ifa"/>
                         <color key="backgroundColor" name="YP_Black"/>
+                        <constraints>
+                            <constraint firstItem="G22-nZ-hgF" firstAttribute="top" secondItem="Scw-kP-Wzy" secondAttribute="top" id="0T3-Og-Awj"/>
+                            <constraint firstItem="G22-nZ-hgF" firstAttribute="centerX" secondItem="Scw-kP-Wzy" secondAttribute="centerX" id="7mJ-nz-7CI"/>
+                            <constraint firstItem="2Or-HU-pbe" firstAttribute="top" secondItem="ZN6-tH-ifa" secondAttribute="top" constant="4" id="ROO-5h-eOf"/>
+                            <constraint firstAttribute="bottom" secondItem="G22-nZ-hgF" secondAttribute="bottom" id="YXt-M5-cFT"/>
+                            <constraint firstItem="2Or-HU-pbe" firstAttribute="leading" secondItem="ZN6-tH-ifa" secondAttribute="leading" constant="7" id="cAV-lo-4W2"/>
+                            <constraint firstItem="G22-nZ-hgF" firstAttribute="leading" secondItem="Scw-kP-Wzy" secondAttribute="leading" id="sqc-if-sR5"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6yc-Ry-DJI"/>
                     <connections>
@@ -117,7 +136,7 @@
                     <navigationItem key="navigationItem" id="Yqq-Zx-uQm"/>
                     <connections>
                         <outlet property="tableView" destination="S0c-Rx-Dly" id="mDa-wx-TPt"/>
-                        <segue destination="9Hv-Eg-zPP" kind="show" identifier="ShowSingleImage" id="CUB-g4-Dn7"/>
+                        <segue destination="9Hv-Eg-zPP" kind="presentation" identifier="ShowSingleImage" id="CUB-g4-Dn7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -239,6 +258,7 @@
     <resources>
         <image name="0" width="200" height="132"/>
         <image name="Favorites Yes Active" width="29.333333969116211" height="26"/>
+        <image name="chevron.backward" width="9" height="15.666666984558105"/>
         <image name="exitProfile" width="20" height="22"/>
         <image name="photoUser" width="70" height="70"/>
         <image name="tab_editorial_active" width="20" height="22"/>
