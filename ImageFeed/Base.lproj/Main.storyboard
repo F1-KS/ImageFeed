@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wT-3o-uZV">
-                                <rect key="frame" x="0.0" y="47" width="375" height="731"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="G22-nZ-hgF">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="132"/>
@@ -77,8 +77,8 @@
                             <constraint firstItem="2Or-HU-pbe" firstAttribute="leading" secondItem="ZN6-tH-ifa" secondAttribute="leading" constant="7" id="cAV-lo-4W2"/>
                             <constraint firstItem="ZN6-tH-ifa" firstAttribute="leading" secondItem="0wT-3o-uZV" secondAttribute="leading" id="lGY-6a-ydM"/>
                             <constraint firstItem="k7K-6S-WKs" firstAttribute="centerX" secondItem="ZN6-tH-ifa" secondAttribute="centerX" id="qAh-Rc-rDo"/>
-                            <constraint firstItem="0wT-3o-uZV" firstAttribute="bottom" secondItem="ZN6-tH-ifa" secondAttribute="bottom" id="xpe-3w-Iv5"/>
-                            <constraint firstItem="ZN6-tH-ifa" firstAttribute="top" secondItem="0wT-3o-uZV" secondAttribute="top" id="yck-zz-Vhg"/>
+                            <constraint firstItem="0wT-3o-uZV" firstAttribute="bottom" secondItem="Scw-kP-Wzy" secondAttribute="bottom" id="xpe-3w-Iv5"/>
+                            <constraint firstAttribute="top" secondItem="0wT-3o-uZV" secondAttribute="top" id="yck-zz-Vhg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6yc-Ry-DJI"/>
