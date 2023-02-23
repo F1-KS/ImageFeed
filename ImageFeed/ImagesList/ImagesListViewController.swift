@@ -6,6 +6,8 @@ final class ImagesListViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        tableView.register(ImagesListCell.self, forCellReuseIdentifier: ImagesListCell.reuseIdentifier) // так таблица настраивается с помощью кода, но в у нас это следано через Main.storyboard
+        
+//        TestProfile()
     }
     
     private let photosName: [String] = Array(0..<20).map{ "\($0)" }
