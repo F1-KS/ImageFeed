@@ -14,6 +14,11 @@ final class SingleImageViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    // Жестко установим цвет StatusBar в светлый
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     
     //MARK: - «Научим» SingleViewController показывать разные картинки, не инициируя загрузку view
     

@@ -13,17 +13,23 @@ final class ProfileViewController: UIViewController {
     private var fullNameUserLabel: UILabel?
     private var nicknameUserLabel: UILabel?
     private var messageTextUserLabel: UILabel?
+    private var profileImage: UIImage?
+    
+    // Жестко установим цвет StatusBar в светлый
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     
     func mainProfile() {
         
         self.view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1058823529, blue: 0.1333333333, alpha: 1)
-        
+       
         
         //MARK: - Описание картинок в профиле
         
-        let profileImage = UIImage(systemName: "photoUserImage")
-        let mainProfile = UIImageView(image: #imageLiteral(resourceName: "photoUser"))
+        let profileImage = UIImage(named: "photoUser")
+        let mainProfile = UIImageView(image: profileImage)
         
         mainProfile.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mainProfile)
