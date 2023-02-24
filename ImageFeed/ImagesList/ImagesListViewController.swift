@@ -16,7 +16,7 @@ final class ImagesListViewController: UIViewController {
         formatter.timeStyle = .none
         return formatter
     }()
-    private let ShowSingleImageSegueIdentifier = "ShowSingleImage" // убераем дублирование в коде
+    private let showSingleImageSegueIdentifier = "ShowSingleImage" // убераем дублирование в коде
     
     
     @IBOutlet private var tableView: UITableView!
@@ -27,7 +27,7 @@ final class ImagesListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ShowSingleImageSegueIdentifier { // Сначала мы проверяем идентификатор сегвея, поскольку может быть больше одного сегвея, выходящего из нашего контроллера
+        if segue.identifier == showSingleImageSegueIdentifier { // Сначала мы проверяем идентификатор сегвея, поскольку может быть больше одного сегвея, выходящего из нашего контроллера
             let viewController = segue.destination as! SingleImageViewController // Делаем преобразования типа для свойства segue.destination (оно имеет тип UIViewController) к тому типу, который мы ожидаем (выставлен в Storyboard'е). В нашем случае мы переходим  из таблицы к SingleImageViewController — поэтому такое преобразование типа безопасно. Если окажется, что мы выбрали неправильный сегвей или не настроили его надлежащим образом, то код в данной строчке закрэшится. Мы сразу же узнаем о проблеме и сможем быстро её исправить
             let indexPath = sender as! IndexPath // Делаем преобразование типа для аргумента sender (мы ожидаем, что там будет indexPath). Более того: мы не сможем сконфигурировать переход верно, если там окажется что-то другое
             let image = UIImage(named: photosName[indexPath.row]) // Получаем по индексу название картинки и саму картинку из ресурсов приложения;
@@ -44,7 +44,7 @@ final class ImagesListViewController: UIViewController {
 extension ImagesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: ShowSingleImageSegueIdentifier, sender: indexPath)
+        performSegue(withIdentifier: showSingleImageSegueIdentifier, sender: indexPath)
     } // Этот метод отвечает за действия, которые будут выполнены при тапе по ячейке таблицы
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

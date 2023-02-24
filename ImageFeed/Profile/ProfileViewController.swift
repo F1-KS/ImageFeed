@@ -21,7 +21,7 @@ final class ProfileViewController: UIViewController {
     }
     
     
-    func mainProfile() {
+    private func mainProfile() {
         
         self.view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1058823529, blue: 0.1333333333, alpha: 1)
        
@@ -86,15 +86,15 @@ final class ProfileViewController: UIViewController {
     @objc
     private func didTapButton() {
         // Решение 1
-        fullNameUserLabel?.removeFromSuperview()
-        fullNameUserLabel = nil
-        
-        // Решение 2
-        for view in view.subviews {
-            if view is UILabel {
-                view.removeFromSuperview()
-            }
-        }
+//        fullNameUserLabel?.removeFromSuperview()
+//        fullNameUserLabel = nil
+//
+//        // Решение 2
+//        for view in view.subviews {
+//            if view is UILabel {
+//                view.removeFromSuperview()
+//            }
+//        }
     }
     
 }
