@@ -38,7 +38,7 @@ final class ImagesListViewController: UIViewController {
     }
 
     
-} // end final class ImagesListViewController
+}
 
 
 extension ImagesListViewController: UITableViewDelegate {

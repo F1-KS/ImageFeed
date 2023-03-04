@@ -1,15 +1,14 @@
-import Foundation
 import UIKit
 
 
 final class SingleImageViewController: UIViewController {
     
-    @IBOutlet var imageView: UIImageView!
-    @IBAction func didTapShareButton(_ sender: Any) {
+    @IBOutlet private var imageView: UIImageView!
+    @IBAction private func didTapShareButton(_ sender: Any) {
         let sharingButton = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil)
         present(sharingButton, animated: true)
     }
-    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet private var scrollView: UIScrollView!
     @IBAction private func didTapBackButton() {
         dismiss(animated: true, completion: nil)
     }
@@ -56,7 +55,7 @@ final class SingleImageViewController: UIViewController {
     }
     
     
-} // end final class SingleImageViewController
+}
 
 extension SingleImageViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
