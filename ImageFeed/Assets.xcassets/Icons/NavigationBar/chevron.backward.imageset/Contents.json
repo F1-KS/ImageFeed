@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Sharing x1.png",
+      "filename" : "chevron.backward.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Sharing x2.png",
+      "filename" : "chevron.backward 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Sharing x3.png",
+      "filename" : "chevron.backward 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
