@@ -10,6 +10,7 @@
 		8D2D3C5829A7629C0097F759 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2D3C5729A7629C0097F759 /* ProfileViewController.swift */; };
 		8D4BA718298FBB0600E48C74 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4BA717298FBB0600E48C74 /* ImagesListCell.swift */; };
 		8D8CBE8B29A21D0200FEB659 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8CBE8A29A21D0200FEB659 /* SingleImageViewController.swift */; };
+		8DAA29DC29B86CF000DE6CFA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA29DB29B86CF000DE6CFA /* Constants.swift */; };
 		8DAC1A7C2986C60C003D16E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC1A7B2986C60C003D16E6 /* AppDelegate.swift */; };
 		8DAC1A7E2986C60C003D16E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC1A7D2986C60C003D16E6 /* SceneDelegate.swift */; };
 		8DAC1A802986C60C003D16E6 /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC1A7F2986C60C003D16E6 /* ImagesListViewController.swift */; };
@@ -22,6 +23,7 @@
 		8D2D3C5729A7629C0097F759 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8D4BA717298FBB0600E48C74 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		8D8CBE8A29A21D0200FEB659 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
+		8DAA29DB29B86CF000DE6CFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8DAC1A782986C60C003D16E6 /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DAC1A7B2986C60C003D16E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DAC1A7D2986C60C003D16E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,14 +53,29 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		8D4BA719298FBB2300E48C74 /* ImagesList */ = {
+		8D4BA719298FBB2300E48C74 /* ImagesListView */ = {
 			isa = PBXGroup;
 			children = (
 				8D4BA717298FBB0600E48C74 /* ImagesListCell.swift */,
 				8DAC1A7F2986C60C003D16E6 /* ImagesListViewController.swift */,
+			);
+			path = ImagesListView;
+			sourceTree = "<group>";
+		};
+		8DAA29DA29B86CBD00DE6CFA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8DAA29DB29B86CF000DE6CFA /* Constants.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8DAA29DE29B8840000DE6CFA /* SingleImageView */ = {
+			isa = PBXGroup;
+			children = (
 				8D8CBE8A29A21D0200FEB659 /* SingleImageViewController.swift */,
 			);
-			path = ImagesList;
+			path = SingleImageView;
 			sourceTree = "<group>";
 		};
 		8DAC1A6F2986C60B003D16E6 = {
@@ -80,8 +97,10 @@
 		8DAC1A7A2986C60C003D16E6 /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				8DAA29DA29B86CBD00DE6CFA /* Services */,
 				8D439F6E2998D93E0094F157 /* Profile */,
-				8D4BA719298FBB2300E48C74 /* ImagesList */,
+				8DAA29DE29B8840000DE6CFA /* SingleImageView */,
+				8D4BA719298FBB2300E48C74 /* ImagesListView */,
 				8DAC1A7B2986C60C003D16E6 /* AppDelegate.swift */,
 				8DAC1A7D2986C60C003D16E6 /* SceneDelegate.swift */,
 				8DAC1A812986C60C003D16E6 /* Main.storyboard */,
@@ -167,6 +186,7 @@
 				8D4BA718298FBB0600E48C74 /* ImagesListCell.swift in Sources */,
 				8DAC1A7C2986C60C003D16E6 /* AppDelegate.swift in Sources */,
 				8D2D3C5829A7629C0097F759 /* ProfileViewController.swift in Sources */,
+				8DAA29DC29B86CF000DE6CFA /* Constants.swift in Sources */,
 				8D8CBE8B29A21D0200FEB659 /* SingleImageViewController.swift in Sources */,
 				8DAC1A7E2986C60C003D16E6 /* SceneDelegate.swift in Sources */,
 			);
