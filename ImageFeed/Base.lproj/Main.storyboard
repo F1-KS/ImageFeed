@@ -45,7 +45,7 @@
                                     <constraint firstAttribute="height" constant="48" id="uH9-vB-YCI"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="chevron.backward"/>
+                                <state key="normal" image="nav_white_button"/>
                                 <connections>
                                     <action selector="didTapBackButton" destination="9Hv-Eg-zPP" eventType="touchUpInside" id="seh-ox-Sjq"/>
                                 </connections>
@@ -197,6 +197,51 @@
             </objects>
             <point key="canvasLocation" x="316" y="-34.729064039408868"/>
         </scene>
+        <!--Web View View Controller-->
+        <scene sceneID="rLw-sW-fMh">
+            <objects>
+                <viewController id="WA9-oM-VcR" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T8V-1V-wtZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ie-bV-fuR">
+                                <rect key="frame" x="16" y="47" width="343" height="731"/>
+                                <color key="backgroundColor" name="YP_White"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvL-13-SWz" userLabel="nav_back_button">
+                                <rect key="frame" x="16" y="70" width="61" height="22"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Назад" image="nav_back_button"/>
+                                <connections>
+                                    <action selector="didTapBackButton" destination="WA9-oM-VcR" eventType="touchUpInside" id="mi2-2o-T6G"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ruo-6s-8J0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ruo-6s-8J0" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JvL-13-SWz" secondAttribute="trailing" symbolic="YES" id="I9C-pT-2XV"/>
+                            <constraint firstItem="JvL-13-SWz" firstAttribute="top" secondItem="ruo-6s-8J0" secondAttribute="top" constant="23" id="OHA-L8-fGq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0ie-bV-fuR" secondAttribute="trailing" id="eM9-fh-btn"/>
+                            <constraint firstItem="JvL-13-SWz" firstAttribute="leading" secondItem="ruo-6s-8J0" secondAttribute="leading" constant="16" id="fWa-md-QiP"/>
+                            <constraint firstItem="0ie-bV-fuR" firstAttribute="leading" secondItem="T8V-1V-wtZ" secondAttribute="leadingMargin" id="iK0-sh-UqE"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="0ie-bV-fuR" secondAttribute="bottom" id="jnj-am-Q03"/>
+                            <constraint firstItem="0ie-bV-fuR" firstAttribute="top" secondItem="T8V-1V-wtZ" secondAttribute="topMargin" id="sBe-gJ-mLI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="0ie-bV-fuR" id="x7l-3M-F2V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hNf-fd-6Jh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-617" y="-1337"/>
+        </scene>
         <!--Auth View Controller-->
         <scene sceneID="SHX-eu-jPX">
             <objects>
@@ -229,6 +274,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="WA9-oM-VcR" kind="presentation" identifier="ShowWebView" modalPresentationStyle="overFullScreen" id="z8U-6u-h7a"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="U4g-61-Rw6"/>
@@ -245,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Sg-BM-hl1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1597.5999999999999" y="-675.3694581280788"/>
+            <point key="canvasLocation" x="-1572" y="-1337"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="UZP-QD-Ygp">
@@ -312,7 +360,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSE-Ec-G5L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2540" y="-675.3694581280788"/>
+            <point key="canvasLocation" x="-2554" y="-1337"/>
         </scene>
     </scenes>
     <resources>
@@ -320,7 +368,8 @@
         <image name="Favorites Yes Active" width="29.333333969116211" height="26"/>
         <image name="Sharing" width="30" height="30"/>
         <image name="auth_screen_logo_svg" width="60" height="60"/>
-        <image name="chevron.backward" width="9" height="15.666666984558105"/>
+        <image name="nav_back_button" width="9" height="16"/>
+        <image name="nav_white_button" width="9" height="15.666666984558105"/>
         <image name="tab_editorial_active" width="20" height="22"/>
         <image name="tab_profile_active" width="24" height="24"/>
         <namedColor name="YP_Black">
