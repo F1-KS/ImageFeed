@@ -6,7 +6,7 @@ final class WebViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!  //1 инициализируем структуру URLComponents с указанием адреса запроса
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: AccessKey),                  //2 устанавливаем значение client_id — код доступа нашего приложения
@@ -21,12 +21,50 @@ final class WebViewViewController: UIViewController {
         webView.navigationDelegate = self
     }
     
+    
+    // Подписываемся для наблюдения
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+    }
+    
+    // Обязательно отписываемся от подписки
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
+    }
+    
     private let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
     weak var delegate: WebViewViewControllerDelegate?
     
     @IBOutlet private var webView: WKWebView!
-    @IBAction private func didTapBackButton(_ sender: Any?) {delegate?.webViewViewControllerDidCancel(self)}
+    @IBAction private func didTapBackButton(_ sender: Any?) {
+        delegate?.webViewViewControllerDidCancel(self)
+    }
+    @IBOutlet private var progressView: UIProgressView!
     
+    
+    //MARK: - Обработчик обновлений состояния загрузки в progressView
+    
+    override func observeValue(
+        forKeyPath keyPath: String?,
+        of object: Any?,
+        change: [NSKeyValueChangeKey : Any]?,
+        context: UnsafeMutableRawPointer?
+    ) {
+        if keyPath == #keyPath(WKWebView.estimatedProgress) {
+            updateProgress()
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
+    }
+    
+    private func updateProgress() {
+        progressView.progress = Float(webView.estimatedProgress)
+        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
+    }
     
 }
 

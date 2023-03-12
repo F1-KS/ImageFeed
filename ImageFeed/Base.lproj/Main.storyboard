@@ -214,27 +214,35 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvL-13-SWz" userLabel="nav_back_button">
-                                <rect key="frame" x="16" y="70" width="61" height="22"/>
+                                <rect key="frame" x="16" y="70" width="9" height="22"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Назад" image="nav_back_button"/>
+                                <state key="normal" image="nav_back_button"/>
                                 <connections>
                                     <action selector="didTapBackButton" destination="WA9-oM-VcR" eventType="touchUpInside" id="mi2-2o-T6G"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lYq-dN-acz">
+                                <rect key="frame" x="0.0" y="100" width="375" height="4"/>
+                                <color key="progressTintColor" name="YP_Black"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ruo-6s-8J0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lYq-dN-acz" secondAttribute="trailing" id="D6w-C2-XiX"/>
                             <constraint firstItem="ruo-6s-8J0" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JvL-13-SWz" secondAttribute="trailing" symbolic="YES" id="I9C-pT-2XV"/>
                             <constraint firstItem="JvL-13-SWz" firstAttribute="top" secondItem="ruo-6s-8J0" secondAttribute="top" constant="23" id="OHA-L8-fGq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0ie-bV-fuR" secondAttribute="trailing" id="eM9-fh-btn"/>
+                            <constraint firstItem="lYq-dN-acz" firstAttribute="top" secondItem="JvL-13-SWz" secondAttribute="bottom" constant="8" symbolic="YES" id="eSa-z2-fjE"/>
                             <constraint firstItem="JvL-13-SWz" firstAttribute="leading" secondItem="ruo-6s-8J0" secondAttribute="leading" constant="16" id="fWa-md-QiP"/>
                             <constraint firstItem="0ie-bV-fuR" firstAttribute="leading" secondItem="T8V-1V-wtZ" secondAttribute="leadingMargin" id="iK0-sh-UqE"/>
                             <constraint firstAttribute="bottomMargin" secondItem="0ie-bV-fuR" secondAttribute="bottom" id="jnj-am-Q03"/>
                             <constraint firstItem="0ie-bV-fuR" firstAttribute="top" secondItem="T8V-1V-wtZ" secondAttribute="topMargin" id="sBe-gJ-mLI"/>
+                            <constraint firstItem="lYq-dN-acz" firstAttribute="leading" secondItem="T8V-1V-wtZ" secondAttribute="leading" id="tjy-v6-mam"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="progressView" destination="lYq-dN-acz" id="1Pt-q0-xfs"/>
                         <outlet property="webView" destination="0ie-bV-fuR" id="x7l-3M-F2V"/>
                     </connections>
                 </viewController>
