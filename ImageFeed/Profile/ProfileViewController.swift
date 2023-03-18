@@ -109,16 +109,7 @@ final class ProfileViewController: UIViewController {
     
     @objc
     private func didTapButton() {
-        // Решение 1
-        //        fullNameUserLabel?.removeFromSuperview()
-        //        fullNameUserLabel = nil
-        //
-        //        // Решение 2
-        //        for view in view.subviews {
-        //            if view is UILabel {
-        //                view.removeFromSuperview()
-        //            }
-        //        }
+
     }
     
 }

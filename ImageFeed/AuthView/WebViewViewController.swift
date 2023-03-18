@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 import WebKit
 
@@ -96,7 +95,6 @@ extension WebViewViewController: WKNavigationDelegate {
             return nil
         }
     }
-    
     
 }
 
