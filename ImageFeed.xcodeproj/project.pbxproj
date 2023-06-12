@@ -118,6 +118,7 @@
 		8DAC1A7A2986C60C003D16E6 /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				8DE2EF1329C7712D00B9D0C1 /* Models */,
 				8DC2699029C5B9F50074A795 /* SplashViewController */,
 				8D11084129B8AA2B000BEED5 /* AuthView */,
 				8DAA29DA29B86CBD00DE6CFA /* Services */,
@@ -140,6 +141,13 @@
 				8DC2699129C5BA020074A795 /* SplashViewController.swift */,
 			);
 			path = SplashViewController;
+			sourceTree = "<group>";
+		};
+		8DE2EF1329C7712D00B9D0C1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
