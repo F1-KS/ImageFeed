@@ -12,7 +12,6 @@ final class ProfileViewController: UIViewController {
     private var fullNameUserLabel: UILabel?
     private var nicknameUserLabel: UILabel?
     private var messageTextUserLabel: UILabel?
-    private var profileImage: UIImage?
     
     // Жестко установим цвет StatusBar в светлый
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -109,16 +108,7 @@ final class ProfileViewController: UIViewController {
     
     @objc
     private func didTapButton() {
-        // Решение 1
-        //        fullNameUserLabel?.removeFromSuperview()
-        //        fullNameUserLabel = nil
-        //
-        //        // Решение 2
-        //        for view in view.subviews {
-        //            if view is UILabel {
-        //                view.removeFromSuperview()
-        //            }
-        //        }
+
     }
     
 }
