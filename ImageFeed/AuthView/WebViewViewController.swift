@@ -8,10 +8,10 @@ final class WebViewViewController: UIViewController {
         
         var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!  //1 инициализируем структуру URLComponents с указанием адреса запроса
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: AccessKey),                  //2 устанавливаем значение client_id — код доступа нашего приложения
-            URLQueryItem(name: "redirect_uri", value: RedirectURI),             //3 устанавливаем значение redirect_uri — URI, который обрабатывает успешную авторизацию пользователя
+            URLQueryItem(name: "client_id", value: accessKey),                  //2 устанавливаем значение client_id — код доступа нашего приложения
+            URLQueryItem(name: "redirect_uri", value: redirectURI),             //3 устанавливаем значение redirect_uri — URI, который обрабатывает успешную авторизацию пользователя
             URLQueryItem(name: "response_type", value: "code"),                 //4 устанавливаем значение response_type — тип ответа, который мы ожидаем. Unsplash ожидает от нас значения code
-            URLQueryItem(name: "scope", value: AccessScope)                     //5 устанавливаем значение scope — списка доступов, разделённых плюсом
+            URLQueryItem(name: "scope", value: accessScope)                     //5 устанавливаем значение scope — списка доступов, разделённых плюсом
         ]
         let url = urlComponents.url!                                            //6 поле urlComponents.url содержит нужный нам URL, используем implicit unwrap, так как если URL не сформируется, то это будет критической ошибкой
         
