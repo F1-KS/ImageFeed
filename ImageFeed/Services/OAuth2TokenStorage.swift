@@ -1,12 +1,23 @@
 import Foundation
+import SwiftKeychainWrapper
+import UIKit
 
 
 final class OAuth2TokenStorage {
     
-    let accessToken = "token"
-    var token: String? {
-        get {UserDefaults.standard.string(forKey: accessToken)}
-        set {UserDefaults.standard.set(newValue, forKey: accessToken)}
-    }
+    static let shared = OAuth2TokenStorage()
+    private let keyChain = KeychainWrapper.standard
     
+    var token: String? {
+        get {
+            keyChain.string(forKey: "bearerToken")
+        }
+        set {
+            if let token = newValue {
+                keyChain.set(token, forKey: "bearerToken")
+            } else {
+                keyChain.removeObject(forKey: "bearerToken")
+            }
+        }
+    }
 }

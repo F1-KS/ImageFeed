@@ -67,6 +67,8 @@ final class WebViewViewController: UIViewController {
     
 }
 
+// MARK: -
+
 extension WebViewViewController: WKNavigationDelegate {
     func webView(
         _ webView: WKWebView,
@@ -95,7 +97,6 @@ extension WebViewViewController: WKNavigationDelegate {
             return nil
         }
     }
-    
 }
 
 protocol WebViewViewControllerDelegate: AnyObject {
