@@ -271,7 +271,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="b8P-QG-T3q"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Войти">
                                     <color key="titleColor" name="YP_Black"/>

@@ -5,10 +5,10 @@ final class OAuth2Service {
     private let urlSession = URLSession.shared
     private (set) var authToken: String? {
         get {
-            return OAuth2TokenStorage().token
+            return OAuth2TokenStorage.shared.token
         }
         set {
-            OAuth2TokenStorage().token = newValue
+            OAuth2TokenStorage.shared.token = newValue
         }
     }
     static let shared = OAuth2Service()
@@ -25,11 +25,11 @@ final class OAuth2Service {
             task?.cancel()
             lastCode = code
             let request = authTokenRequest(code: code)
-            let task = urlSession.objectTask(for: request) {(result: Result<OAuthTokenResponseBody, Error>) in
+            let task = urlSession.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
                 switch result {
                 case .success(let body):
                     let authToken = body.accessToken
-                    self.authToken = authToken
+                    self?.authToken = authToken
                     completion(.success(authToken))
                 case .failure(let errorFetchOAuthToken):
                     completion(.failure(errorFetchOAuthToken))
@@ -47,9 +47,9 @@ extension OAuth2Service {
     private func authTokenRequest(code: String) -> URLRequest {
         URLRequest.makeHTTPRequest(
             path: "/oauth/token"
-            + "?client_id=\(accessKey)"
-            + "&client_secret=\(secretKey)"
-            + "&redirect_uri=\(redirectURI)"
+            + "?client_id=\(Constants.accessKey)"
+            + "&client_secret=\(Constants.secretKey)"
+            + "&redirect_uri=\(Constants.redirectURI)"
             + "&code=\(code)"
             + "&grant_type=authorization_code",
             httpMethod: "POST",
@@ -91,7 +91,7 @@ extension URLRequest {
     static func makeHTTPRequest(
         path: String,
         httpMethod: String,
-        baseURL: URL = defaultBaseURL
+        baseURL: URL = Constants.defaultBaseURL
     ) -> URLRequest {
         var request = URLRequest(url: URL(string: path, relativeTo: baseURL)!)
         request.httpMethod = httpMethod

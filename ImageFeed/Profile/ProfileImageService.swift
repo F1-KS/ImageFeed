@@ -1,20 +1,5 @@
 import Foundation
 
-//MARK: -
-
-struct UserResult: Codable {
-    let profileImage: ImageResult
-    
-    private enum CodingKeys: String, CodingKey {
-        case profileImage = "profile_image"
-    }
-}
-
-struct ImageResult: Codable {
-    let small: String
-    let medium: String
-    let large: String
-}
 
 //MARK: -
 
@@ -46,11 +31,11 @@ final class ProfileImageService {
                     name: ProfileImageService.DidChangeNotification,
                     object: self,
                     userInfo: ["URL": profileImageURL])
-                self.task = nil
             case .failure(let error):
                 completion(.failure(error))
                 self.lastUserName = nil
             }
+            self.task = nil
         }
         self.task = task
         task.resume()
@@ -62,8 +47,10 @@ extension ProfileImageService {
     private func makeRequest(username: String) -> URLRequest {
         var urlComponents = URLComponents()
         urlComponents.path = "/users/\(username)"
-        guard let url = urlComponents.url(relativeTo: defaultBaseURL) else {fatalError("Failed to create URL for avatar Image") }
-        guard let token = OAuth2TokenStorage().token else {fatalError("Failed to create Token")}
+        guard let url = urlComponents.url(relativeTo: Constants.defaultBaseURL) else {fatalError("Failed to create URL for avatar Image") }
+        //TODO: - К замене fatalError на return вернуться позже
+        guard let token = OAuth2TokenStorage.shared.token else {fatalError("Failed to create Token")}
+        //FIXME: - К замене fatalError на return вернуться позже
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

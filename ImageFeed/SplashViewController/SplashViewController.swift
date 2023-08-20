@@ -8,12 +8,10 @@ import SwiftKeychainWrapper
 final class SplashViewController: UIViewController {
     
     private let oAuth2Service = OAuth2Service.shared
-    private let oAuth2TokenStorage = OAuth2TokenStorage()
+    private let oAuth2TokenStorage = OAuth2TokenStorage.shared
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
-    
     private var isFirstLaunch = true
-    
     private let splashLogoImage: UIImageView = {
         let image = UIImage(named: "Vector")
         let imageView = UIImageView(image: image)
@@ -21,11 +19,8 @@ final class SplashViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         mainSplash()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,7 +39,6 @@ final class SplashViewController: UIViewController {
             }
         }
         isFirstLaunch = false
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,7 +126,6 @@ final class UIBlockingProgressHUD {
         window?.isUserInteractionEnabled = true
         ProgressHUD.dismiss()
     }
-    
 }
 
 //MARK: -
@@ -151,8 +144,6 @@ extension SplashViewController: AuthViewControllerDelegate {
             guard let self = self else {return}
             switch result {
             case .success(let token):
-                print("token - \(token)")
-                self.switchToTabBarController()
                 self.oAuth2TokenStorage.token = token
                 self.fetchProfile(token: token)
                 UIBlockingProgressHUD.dismiss()

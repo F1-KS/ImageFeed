@@ -8,10 +8,10 @@ final class WebViewViewController: UIViewController {
         
         var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!  //1 инициализируем структуру URLComponents с указанием адреса запроса
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: accessKey),                  //2 устанавливаем значение client_id — код доступа нашего приложения
-            URLQueryItem(name: "redirect_uri", value: redirectURI),             //3 устанавливаем значение redirect_uri — URI, который обрабатывает успешную авторизацию пользователя
+            URLQueryItem(name: "client_id", value: Constants.accessKey),                  //2 устанавливаем значение client_id — код доступа нашего приложения
+            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),             //3 устанавливаем значение redirect_uri — URI, который обрабатывает успешную авторизацию пользователя
             URLQueryItem(name: "response_type", value: "code"),                 //4 устанавливаем значение response_type — тип ответа, который мы ожидаем. Unsplash ожидает от нас значения code
-            URLQueryItem(name: "scope", value: accessScope)                     //5 устанавливаем значение scope — списка доступов, разделённых плюсом
+            URLQueryItem(name: "scope", value: Constants.accessScope)                     //5 устанавливаем значение scope — списка доступов, разделённых плюсом
         ]
         let url = urlComponents.url!                                            //6 поле urlComponents.url содержит нужный нам URL, используем implicit unwrap, так как если URL не сформируется, то это будет критической ошибкой
         
@@ -20,18 +20,15 @@ final class WebViewViewController: UIViewController {
         webView.navigationDelegate = self
     }
     
-    
     // Подписываемся для наблюдения
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
     }
     
     // Обязательно отписываемся от подписки
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
     }
     
@@ -43,7 +40,6 @@ final class WebViewViewController: UIViewController {
         delegate?.webViewViewControllerDidCancel(self)
     }
     @IBOutlet private var progressView: UIProgressView!
-    
     
     //MARK: - Обработчик обновлений состояния загрузки в progressView
     
@@ -64,7 +60,6 @@ final class WebViewViewController: UIViewController {
         progressView.progress = Float(webView.estimatedProgress)
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
-    
 }
 
 // MARK: -
@@ -103,4 +98,3 @@ protocol WebViewViewControllerDelegate: AnyObject {
     func webViewViewController (_ vc: WebViewViewController, didAuthenticateWithCode code: String)
     func webViewViewControllerDidCancel(_ vc: WebViewViewController)
 }
-

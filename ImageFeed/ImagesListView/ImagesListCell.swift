@@ -8,5 +8,4 @@ final class ImagesListCell: UITableViewCell {
     @IBOutlet var cellImage: UIImageView!
     
     static let reuseIdentifier = "ImagesListCell"
-    
 }

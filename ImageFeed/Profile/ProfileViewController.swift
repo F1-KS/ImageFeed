@@ -143,7 +143,6 @@ final class ProfileViewController: UIViewController {
                 guard self != nil else { return }
                 updateAvatar()
             }
-        
     }
     
     //MARK: - Описание действия кнопки выхода из профиля пользователя (пока отключено)
