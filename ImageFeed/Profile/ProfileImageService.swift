@@ -10,7 +10,7 @@ final class ProfileImageService {
     private let decoder = JSONDecoder()
     private var lastUserName: String?
     static let shared = ProfileImageService()
-    static let DidChangeNotification = Notification.Name("ProfileImageProviderDidChange")
+    static let didChangeNotification = Notification.Name("ProfileImageProviderDidChange")
     
     
     func fetchProfileImageURL(username: String, _ completion: @escaping (Result<String, Error>) -> Void) {
@@ -28,7 +28,7 @@ final class ProfileImageService {
                 self.avatarURL = profileImageURL
                 completion(.success(profileImageURL))
                 NotificationCenter.default.post(
-                    name: ProfileImageService.DidChangeNotification,
+                    name: ProfileImageService.didChangeNotification,
                     object: self,
                     userInfo: ["URL": profileImageURL])
             case .failure(let error):

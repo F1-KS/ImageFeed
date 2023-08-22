@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 import ProgressHUD
 import SwiftKeychainWrapper
@@ -107,24 +106,6 @@ final class SplashViewController: UIViewController {
                 ProgressHUD.dismiss() // скрыть индикатор загрузки
             }
         }
-    }
-}
-
-//MARK: -
-
-final class UIBlockingProgressHUD {
-    private static var window: UIWindow? {
-        return UIApplication.shared.windows.first
-    }
-    
-    static func show() {
-        window?.isUserInteractionEnabled = false
-        ProgressHUD.show()
-    }
-    
-    static func dismiss() {
-        window?.isUserInteractionEnabled = true
-        ProgressHUD.dismiss()
     }
 }
 
