@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 
 final class ImagesListCell: UITableViewCell {
@@ -8,5 +7,4 @@ final class ImagesListCell: UITableViewCell {
     @IBOutlet var cellImage: UIImageView!
     
     static let reuseIdentifier = "ImagesListCell"
-    
 }

@@ -6,7 +6,6 @@ final class ImagesListViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        tableView.register(ImagesListCell.self, forCellReuseIdentifier: ImagesListCell.reuseIdentifier) // так таблица настраивается с помощью кода, но в у нас это следано через Main.storyboard
-        
     }
     
     private let photosName: [String] = Array(0..<20).map{ "\($0)" }
@@ -36,8 +35,6 @@ final class ImagesListViewController: UIViewController {
             super.prepare(for: segue, sender: sender) // Если это неизвестный сегвей, есть вероятность, что он был определён суперклассом (то есть родительским классом). В таком случае мы должны передать ему управление
         }
     }
-
-    
 }
 
 
@@ -58,7 +55,6 @@ extension ImagesListViewController: UITableViewDelegate {
         let cellHeight = image.size.height * scale + imageInsets.top + imageInsets.bottom
         return cellHeight
     }
-    
 }
 
 extension ImagesListViewController: UITableViewDataSource {
@@ -76,7 +72,6 @@ extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photosName.count
     }
-    
 }
 
 extension ImagesListViewController {
@@ -95,5 +90,4 @@ extension ImagesListViewController {
         let likeImage = isLiked ? UIImage(named: "Favorites Yes Active") : UIImage(named: "Favorites No Active")
         cell.likeButton.setImage(likeImage, for: .normal)
     }
-    
 }

@@ -1,4 +1,6 @@
 import UIKit
+import Kingfisher
+
 
 final class ProfileViewController: UIViewController {
     
@@ -7,39 +9,40 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         mainProfile()
+        
     }
     
     private var fullNameUserLabel: UILabel?
     private var nicknameUserLabel: UILabel?
     private var messageTextUserLabel: UILabel?
+    private var profileImageServiceObserver: NSObjectProtocol?
+    private let profileService = ProfileService.shared
     
     // Жестко установим цвет StatusBar в светлый
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    
-    private func mainProfile() {
+    func mainProfile() {
         
         self.view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1058823529, blue: 0.1333333333, alpha: 1)
-        
         
         //MARK: - Констрейнты
         
         func applyConstraints() {
             NSLayoutConstraint.activate([
-                fullNameUserLabel.leadingAnchor.constraint(equalTo: mainProfile.leadingAnchor),
-                fullNameUserLabel.topAnchor.constraint(equalTo: mainProfile.bottomAnchor, constant: 20),
+                fullNameUserLabel.leadingAnchor.constraint(equalTo: mainProfileImage.leadingAnchor),
+                fullNameUserLabel.topAnchor.constraint(equalTo: mainProfileImage.bottomAnchor, constant: 20),
                 profileExitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-                profileExitButton.centerYAnchor.constraint(equalTo: mainProfile.centerYAnchor),
-                nicknameUserLabel.leadingAnchor.constraint(equalTo: mainProfile.leadingAnchor),
+                profileExitButton.centerYAnchor.constraint(equalTo: mainProfileImage.centerYAnchor),
+                nicknameUserLabel.leadingAnchor.constraint(equalTo: mainProfileImage.leadingAnchor),
                 nicknameUserLabel.topAnchor.constraint(equalTo: fullNameUserLabel.bottomAnchor, constant: 8),
-                messageTextUserLabel.leadingAnchor.constraint(equalTo: mainProfile.leadingAnchor),
+                messageTextUserLabel.leadingAnchor.constraint(equalTo: mainProfileImage.leadingAnchor),
                 messageTextUserLabel.topAnchor.constraint(equalTo: nicknameUserLabel.bottomAnchor, constant: 8),
-                mainProfile.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-                mainProfile.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-                mainProfile.widthAnchor.constraint(equalToConstant: 70),
-                mainProfile.heightAnchor.constraint(equalToConstant: 70)
+                mainProfileImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+                mainProfileImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+                mainProfileImage.widthAnchor.constraint(equalToConstant: 70),
+                mainProfileImage.heightAnchor.constraint(equalToConstant: 70)
                 
             ])
         }
@@ -47,8 +50,8 @@ final class ProfileViewController: UIViewController {
         func addSubview() {
             view.addSubview(fullNameUserLabel)
             fullNameUserLabel.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(mainProfile)
-            mainProfile.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(mainProfileImage)
+            mainProfileImage.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(nicknameUserLabel)
             nicknameUserLabel.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(messageTextUserLabel)
@@ -57,13 +60,16 @@ final class ProfileViewController: UIViewController {
             profileExitButton.translatesAutoresizingMaskIntoConstraints = false
             
             applyConstraints()
+            
         }
-        
         
         //MARK: - Описание картинок в профиле
         
         let profileImage = UIImage(named: "PhotoUser")
-        let mainProfile = UIImageView(image: profileImage)
+        lazy var mainProfileImage: UIImageView = {
+            let imageView = UIImageView(image: profileImage)
+            return imageView
+        }()
         
         //MARK: - Описание полей Label
         
@@ -101,17 +107,48 @@ final class ProfileViewController: UIViewController {
         
         addSubview() // Вызов констрейнтов
         
+        
+        //MARK: - Обновляем аватарку
+        
+        func updateAvatar() {
+            guard
+                let profileImageURL = ProfileImageService.shared.avatarURL,
+                let url = URL(string: profileImageURL) else { return }
+            let processor = RoundCornerImageProcessor(cornerRadius: 35)
+            mainProfileImage.kf.indicatorType = .activity
+            mainProfileImage.kf.setImage(with: url,
+                                         placeholder: UIImage(named: "placeholder.jpeg"),
+                                         options: [.processor(processor),.cacheSerializer(FormatIndicatedCacheSerializer.png)])
+            let cache = ImageCache.default
+            cache.clearDiskCache()
+            cache.clearMemoryCache()
+            
+        }
+        
+        updateProfileDetails(profile: profileService.profile)
+        
+        func updateProfileDetails(profile: Profile?) {
+            guard let profile = profile else {return}
+            self.fullNameUserLabel?.text = profile.name
+            self.nicknameUserLabel?.text = profile.loginName
+            self.messageTextUserLabel?.text = profile.bio
+        }
+        
+        updateAvatar()
+        
+        profileImageServiceObserver = NotificationCenter.default.addObserver(
+            forName: ProfileImageService.didChangeNotification,
+            object: nil,
+            queue: .main) { [weak self] _ in
+                guard self != nil else { return }
+                updateAvatar()
+            }
     }
-    
     
     //MARK: - Описание действия кнопки выхода из профиля пользователя (пока отключено)
     
     @objc
     private func didTapButton() {
-
+        
     }
-    
 }
-
-
-
