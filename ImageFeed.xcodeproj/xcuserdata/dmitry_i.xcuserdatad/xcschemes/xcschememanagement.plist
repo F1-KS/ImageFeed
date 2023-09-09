@@ -11,6 +11,7 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
+<<<<<<< HEAD
 	<dict>
 		<key>6901FAA72AA4E36600006225</key>
 		<dict>
@@ -23,5 +24,8 @@
 			<true/>
 		</dict>
 	</dict>
+=======
+	<dict/>
+>>>>>>> sprint_12
 </dict>
 </plist>
