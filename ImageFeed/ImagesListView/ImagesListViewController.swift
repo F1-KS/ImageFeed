@@ -1,4 +1,6 @@
 import UIKit
+import Kingfisher
+
 
 final class ImagesListViewController: UIViewController {
     
@@ -16,7 +18,8 @@ final class ImagesListViewController: UIViewController {
         return formatter
     }()
     private let showSingleImageSegueIdentifier = "ShowSingleImage" // убераем дублирование в коде
-    
+    private var imageListService = ImagesListService.shared
+    private var photos: [Photo] = []
     
     @IBOutlet private var tableView: UITableView!
     
@@ -72,6 +75,16 @@ extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photosName.count
     }
+    
+    func tableView(
+        _ tableView: UITableView,
+        willDisplay cell: UITableViewCell,
+        forRowAt indexPath: IndexPath) {
+            let photos = imageListService.photos
+            if indexPath.row + 1 == photos.count {
+                imageListService.fetchPhotosNextPage()
+            }
+        }
 }
 
 extension ImagesListViewController {
