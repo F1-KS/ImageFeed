@@ -5,8 +5,10 @@ final class SingleImageViewController: UIViewController {
     
     @IBOutlet private var imageView: UIImageView!
     @IBAction private func didTapShareButton(_ sender: Any) {
+        guard let image = imageView.image else { return }
         let sharingButton = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil)
-        present(sharingButton, animated: true)
+        sharingButton.popoverPresentationController?.sourceView = self.view // Ближайший всплывающий контроллер
+        self.present(sharingButton, animated: true, completion: nil)
     }
     @IBOutlet private var scrollView: UIScrollView!
     @IBAction private func didTapBackButton() {
@@ -29,12 +31,13 @@ final class SingleImageViewController: UIViewController {
         }
     }
     
+    var fullImageURL: URL!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = image
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
-        rescaleAndCenterImageInScrollView(image: image)
+        showImageList()
     }
     
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
@@ -52,6 +55,42 @@ final class SingleImageViewController: UIViewController {
         let x = (newContentSize.width - visibleRectSize.width) / 2
         let y = (newContentSize.height - visibleRectSize.height) / 2
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
+    }
+    
+    func showImageList() {
+        UIBlockingProgressHUD.show()
+        imageView.kf.setImage(with: fullImageURL) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let image):
+                
+                self.rescaleAndCenterImageInScrollView(image: image.image)
+            case .failure:
+                self.showErrorAlert()
+            }
+            UIBlockingProgressHUD.dismiss()
+        }
+    }
+    
+    private func showErrorAlert() {
+        let alert = UIAlertController(
+            title: "Что-то пошло не так",
+            message: "Попробовать ещё раз?",
+            preferredStyle: .alert
+        )
+        
+        let dismissAction = UIAlertAction(title: "Нет", style: .default ) { _ in
+            alert.dismiss(animated: true)
+        }
+        
+        let retryAction = UIAlertAction(title: "Попробовать еше раз?", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.showImageList()
+        }
+        
+        alert.addAction(dismissAction)
+        alert.addAction(retryAction)
+        self.present(alert, animated: true)
     }
 }
 

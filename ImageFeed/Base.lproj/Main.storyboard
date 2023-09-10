@@ -125,9 +125,12 @@
                                                     <rect key="frame" x="359" y="16" width="29" height="26"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" image="Favorites Yes Active">
+                                                    <state key="normal" image="FavoritesNoActive">
                                                         <color key="titleColor" name="YP_White"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="likeButtonClicked2:" destination="l5D-qv-9oX" eventType="touchUpInside" id="C4S-JB-WJV"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05 февраля 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7a-Zi-KFF" userLabel="Date Label">
                                                     <rect key="frame" x="24" y="112" width="109" height="16"/>
@@ -343,7 +346,7 @@
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
-        <image name="Favorites Yes Active" width="29" height="26"/>
+        <image name="FavoritesNoActive" width="29" height="26"/>
         <image name="Sharing" width="30" height="30"/>
         <image name="auth_screen_logo_svg" width="60" height="60"/>
         <image name="nav_back_button" width="9" height="16"/>

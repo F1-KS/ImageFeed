@@ -5,6 +5,8 @@ final class AuthViewController: UIViewController {
     
     private let showWebViewSegueIdentifier = "ShowWebView" //Добавим значение этого (ShowWebView) идентификатора в код класса AuthViewController — оно пригодится нам в дальнейшем.
     weak var delegate: AuthViewControllerDelegate?
+    private let oAuth2Service = OAuth2Service.shared
+    private let oAuth2TokenStorage = OAuth2TokenStorage.shared
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showWebViewSegueIdentifier {
@@ -29,5 +31,5 @@ extension AuthViewController: WebViewViewControllerDelegate {
 }
 
 protocol AuthViewControllerDelegate: AnyObject {
-    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode: String)
+    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String)
 }
