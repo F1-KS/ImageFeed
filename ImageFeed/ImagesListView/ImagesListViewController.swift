@@ -150,25 +150,21 @@ extension ImagesListViewController: UITableViewDataSource {
 extension ImagesListViewController {
     
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        let stubImage = UIImage(named: "scribble.variable")
+        guard let stubImage = UIImage(named: "scribble.variable") else { return }
         let imageUrl = photosList[indexPath.row].thumbImageURL
-        let url = URL(string: imageUrl)
+        guard let url = URL(string: imageUrl) else { return }
         
         cell.cellImage.kf.indicatorType = .activity
         cell.cellImage.kf.setImage(with: url, placeholder: stubImage) { [weak self] _ in
             guard let self = self else { return }
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
-            cell.cellImage.kf.indicatorType = .none
         }
+        cell.setIsLiked(isLiked: photosList[indexPath.row].isLiked)
         let photo = photosList[indexPath.row]
         if let photoCreatedAt = photo.createdAt {
             cell.dateLabel.text = dateFormatter.string(from: photoCreatedAt)
         } else {
             cell.dateLabel.text = ""
         }
-        // ставим лайк на каждую вторую картинку
-        let isLiked = indexPath.row == 0 //  % 2 == 0
-        let likeImage = isLiked ? UIImage(named: "FavoritesYesActive") : UIImage(named: "FavoritesNoActive")
-        cell.likeButton.setImage(likeImage, for: .normal)
     }
 }
