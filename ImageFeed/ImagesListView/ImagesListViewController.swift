@@ -82,7 +82,6 @@ extension ImagesListViewController: ImagesListCellDelegate {
             case .success:
                 self.photosList = self.imageListService.photos // Синхронизируем массив картинок с сервисом
                 cell.setIsLiked(isLiked: !photo.isLiked) // Изменим индикацию лайка картинки
-                UIBlockingProgressHUD.dismiss() // Уберём лоадер
                 // Покажем, что что-то пошло не так
             case .failure(let error):
                 print("imageListCellDidTapLike Error: \(error)")

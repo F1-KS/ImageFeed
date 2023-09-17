@@ -82,11 +82,10 @@ final class ImagesListService {
             case .success(let photoResult):
                 self.preparePhoto(photoResult)
                 NotificationCenter.default.post(name: ImagesListService.didChangeNotification, object: self, userInfo: ["photos" : self.photos] )
-                self.task = nil
             case .failure(let error):
-                self.task = nil
                 print(error)
             }
+            self.task = nil
         }
         self.task = task
         task.resume()
