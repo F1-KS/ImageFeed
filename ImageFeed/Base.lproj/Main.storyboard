@@ -122,10 +122,10 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSV-wt-JCv" userLabel="Like Button">
-                                                    <rect key="frame" x="359" y="16" width="29" height="26"/>
+                                                    <rect key="frame" x="358" y="16" width="30" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" image="FavoritesNoActive">
+                                                    <state key="normal">
                                                         <color key="titleColor" name="YP_White"/>
                                                     </state>
                                                     <connections>
@@ -346,7 +346,6 @@
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
-        <image name="FavoritesNoActive" width="29" height="26"/>
         <image name="Sharing" width="30" height="30"/>
         <image name="auth_screen_logo_svg" width="60" height="60"/>
         <image name="nav_back_button" width="9" height="16"/>

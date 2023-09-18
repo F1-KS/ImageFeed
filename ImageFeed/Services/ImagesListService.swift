@@ -72,7 +72,7 @@ final class ImagesListService {
         assert(Thread.isMainThread)
         if task != nil { return }
         
-        let nextPage = lastLoadedPage == nil ? 0 : lastLoadedPage! + 1
+        let nextPage = lastLoadedPage == nil ? 1 : lastLoadedPage! + 1
         lastLoadedPage = nextPage
         guard let request = makeRequest(path: "/photos?page=\(nextPage)&&per_page=10") else {
             return assertionFailure("Нет связи с библиотекой картинок")}
@@ -115,7 +115,7 @@ final class ImagesListService {
         assert(Thread.isMainThread) // все операции с photos выполнять на главном потоке
         guard let token = OAuth2TokenStorage.shared.token  else {
             return assertionFailure("Error like request")}
-        let method = isLike ?  "DELETE" : "POST"
+        let method = isLike ?  "POST" : "DELETE"
         var request = URLRequest.makeHTTPRequest(
             path: "/photos/\(photoId)/like",
             httpMethod: method,
