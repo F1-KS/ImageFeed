@@ -17,7 +17,8 @@ final class ProfileViewController: UIViewController {
     private var messageTextUserLabel: UILabel?
     private var profileImageServiceObserver: NSObjectProtocol?
     private let profileService = ProfileService.shared
-    
+    private let webVVC = WebViewViewController.shared
+
     // Жестко установим цвет StatusBar в светлый
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -100,7 +101,7 @@ final class ProfileViewController: UIViewController {
             let profileExitButton = UIButton.systemButton(
                 with: UIImage(systemName: "ipad.and.arrow.forward")!,
                 target: self,
-                action: #selector(Self.didTapButton)
+                action: #selector(Self.didTapExitProfileButton)
             )
             profileExitButton.tintColor = #colorLiteral(red: 0.9607843137, green: 0.4196078431, blue: 0.4235294118, alpha: 1)
             return profileExitButton }()
@@ -148,7 +149,22 @@ final class ProfileViewController: UIViewController {
     //MARK: - Описание действия кнопки выхода из профиля пользователя (пока отключено)
     
     @objc
-    private func didTapButton() {
+    private func didTapExitProfileButton() {
+        let alert = UIAlertController(title: "Выход", message: "Выйти из Вашего профиля?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.exitProfile()
+        }))
         
+        alert.addAction(UIAlertAction(title: "Нет", style: .default))
+        self.present(alert, animated: true)
+    }
+    
+    private func exitProfile(){
+        OAuth2TokenStorage.shared.token = nil
+        webVVC.webViewClean()
+        guard let window = UIApplication.shared.windows.first else {fatalError("Invalid Configuration")}
+        window.rootViewController = SplashViewController()
+        window.makeKeyAndVisible()
     }
 }
