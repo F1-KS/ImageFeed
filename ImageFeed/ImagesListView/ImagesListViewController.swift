@@ -31,9 +31,7 @@ final class ImagesListViewController: UIViewController {
     }()
     private let showSingleImageSegueIdentifier = "ShowSingleImage" // убераем дублирование в коде
     private var imageListService = ImagesListService.shared
-    private var photosList: [Photo] = []
-    private var imageListServiceObserver: NSObjectProtocol?
-    
+
     
     @IBOutlet private var tableView: UITableView!
     
@@ -144,6 +142,17 @@ extension ImagesListViewController: UITableViewDataSource {
             } completion: { _ in }
         }
     }
+    
+    func tableView(
+        _ tableView: UITableView,
+        willDisplay cell: UITableViewCell,
+        forRowAt indexPath: IndexPath) {
+            let photos = imageListService.photos
+            if indexPath.row + 1 == photos.count {
+                imageListService.fetchPhotosNextPage()
+            }
+        }
+    
 }
 
 extension ImagesListViewController {
