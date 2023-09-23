@@ -56,6 +56,7 @@ final class ImagesListViewController: UIViewController {
     }
 }
 
+// MARK: -
 
 extension ImagesListViewController: UITableViewDelegate {
     
