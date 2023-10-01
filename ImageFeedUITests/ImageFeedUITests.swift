@@ -7,7 +7,7 @@ final class ImageFeedUITests: XCTestCase {
     
     private let unsplashWebView = "Connect ImageFeed + Unsplash | Unsplash"
     private let loginText = "f1-ks@yandex.ru"
-    private let passwordText = "duqzam-4syxzo-xukseZ"
+    private let passwordText = "******************"
     private let loginOneButton = "Login"
     private let exitProfileButton = "ipad.and.arrow.forward"
     private let likeButton = "likeButton"
