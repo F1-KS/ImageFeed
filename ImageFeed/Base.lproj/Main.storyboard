@@ -128,6 +128,9 @@
                                                     <state key="normal">
                                                         <color key="titleColor" name="YP_White"/>
                                                     </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="likeButton"/>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="likeButtonClicked2:" destination="l5D-qv-9oX" eventType="touchUpInside" id="C4S-JB-WJV"/>
                                                     </connections>
@@ -204,7 +207,7 @@
         <!--Web View View Controller-->
         <scene sceneID="rLw-sW-fMh">
             <objects>
-                <viewController id="WA9-oM-VcR" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewViewController" id="WA9-oM-VcR" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T8V-1V-wtZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,6 +274,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuV-7B-obR">
                                 <rect key="frame" x="16" y="703" width="382" height="48"/>
                                 <color key="backgroundColor" name="YP_White"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Authenticate"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="b8P-QG-T3q"/>
                                 </constraints>

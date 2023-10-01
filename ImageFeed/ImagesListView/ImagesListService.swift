@@ -47,7 +47,7 @@ final class ImagesListService {
     private var lastLoadedPage: Int?
     private var task: URLSessionTask?
     private let urlSession = URLSession.shared
-    private let dateFormatter = ISO8601DateFormatter()
+    let dateFormatter = ISO8601DateFormatter()
     
     
     func preparePhoto(_ photoResult: [PhotoResult]) {
