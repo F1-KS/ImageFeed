@@ -1,6 +1,11 @@
 import UIKit
 import Kingfisher
 
+protocol ImagesListViewControllerProtocol: AnyObject {
+    var presenter: ImagesListPresenterProtocol { get set }
+    func updateTableViewAnimated()
+
+}
 
 final class ImagesListViewController: UIViewController {
     
@@ -8,18 +13,8 @@ final class ImagesListViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        tableView.register(ImagesListCell.self, forCellReuseIdentifier: ImagesListCell.reuseIdentifier) // так таблица настраивается с помощью кода, но в у нас это следано через Main.storyboard
-        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
-        
-        imageListServiceObserver = NotificationCenter.default
-            .addObserver(
-                forName: ImagesListService.didChangeNotification,
-                object: nil,
-                queue: .main) { [weak self] _ in
-                    guard let self = self else { return }
-                    self.updateTableViewAnimated()
-                }
-        imageListService.fetchPhotosNextPage()
-        
+        presenter.viewImagesListVC = self
+        presenter.viewDidLoad()
     }
     
     private lazy var dateFormatter: DateFormatter = {
@@ -33,7 +28,9 @@ final class ImagesListViewController: UIViewController {
     private var imageListService = ImagesListService.shared
     private var photosList: [Photo] = []
     private var imageListServiceObserver: NSObjectProtocol?
-    
+    lazy var presenter: ImagesListPresenterProtocol = {
+        return ImageListPresenter()
+    } ()
     
     @IBOutlet private var tableView: UITableView!
     
@@ -104,7 +101,8 @@ extension ImagesListViewController: ImagesListCellDelegate {
     }
 }
 
-extension ImagesListViewController: UITableViewDataSource {
+extension ImagesListViewController: UITableViewDataSource & ImagesListViewControllerProtocol {
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath) // 1 Мы использовали здесь метод, который из всех ячеек, зарегистрированных в таблице, возвращает ячейку по идентификатору, добавленному ранее.
