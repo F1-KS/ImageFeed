@@ -1,25 +1,25 @@
 import UIKit
 import WebKit
 
-final class WebViewViewController: UIViewController {
+
+public protocol WebViewViewControllerProtocol: AnyObject{ // sprint_13
+    var presenterWebView: WebViewPresenterProtocol? { get set } // sprint_13
+    func load(request: URLRequest) // sprint_13
+    func setProgressValue(_ newValue: Float) // sprint_13
+    func setProgressHidden(_ isHidden: Bool) // sprint_13
+}
+
+final class WebViewViewController: UIViewController & WebViewViewControllerProtocol{ // sprint_13
     
     static let shared = WebViewViewController()
+    var presenterWebView: WebViewPresenterProtocol? // sprint_13
+    let vVP: WebViewPresenter? = nil // sprint_13
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!  //1 инициализируем структуру URLComponents с указанием адреса запроса
-        urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: Constants.accessKey),                  //2 устанавливаем значение client_id — код доступа нашего приложения
-            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),             //3 устанавливаем значение redirect_uri — URI, который обрабатывает успешную авторизацию пользователя
-            URLQueryItem(name: "response_type", value: "code"),                 //4 устанавливаем значение response_type — тип ответа, который мы ожидаем. Unsplash ожидает от нас значения code
-            URLQueryItem(name: "scope", value: Constants.accessScope)                     //5 устанавливаем значение scope — списка доступов, разделённых плюсом
-        ]
-        let url = urlComponents.url!                                            //6 поле urlComponents.url содержит нужный нам URL, используем implicit unwrap, так как если URL не сформируется, то это будет критической ошибкой
-        
-        let request = URLRequest(url: url)
-        webView.load(request)
         webView.navigationDelegate = self
+        presenterWebView?.viewDidLoad()
     }
     
     // Подписываемся для наблюдения
@@ -34,7 +34,6 @@ final class WebViewViewController: UIViewController {
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
     }
     
-    private let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
     weak var delegate: WebViewViewControllerDelegate?
     
     @IBOutlet private var webView: WKWebView!
@@ -52,16 +51,24 @@ final class WebViewViewController: UIViewController {
         context: UnsafeMutableRawPointer?
     ) {
         if keyPath == #keyPath(WKWebView.estimatedProgress) {
-            updateProgress()
+            presenterWebView?.didUpdateProgressValue(webView.estimatedProgress) // sprint_13
         } else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     
-    private func updateProgress() {
-        progressView.progress = Float(webView.estimatedProgress)
-        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
+    func setProgressValue(_ newValue: Float) { // sprint_13
+        progressView.progress = newValue // sprint_13
     }
+    
+    func setProgressHidden(_ isHidden: Bool) { // sprint_13
+        progressView.isHidden = isHidden // sprint_13
+    }
+    
+    func load(request: URLRequest) { // sprint_13
+        webView.load(request) // sprint_13
+    }
+    
 }
 
 // MARK: -
@@ -83,16 +90,10 @@ extension WebViewViewController: WKNavigationDelegate {
     
     private func code(from navigationAction: WKNavigationAction) -> String? {
         if
-            let url = navigationAction.request.url,                         //1 Получаем из навигационного действия navigationAction URL
-            let urlComponents = URLComponents(string: url.absoluteString),  //2 Создаём уже известную нам структуру URLComponents. Только теперь мы будем не формировать URL с помощью компонентов, а наоборот — получать значения компонентов из URL
-            urlComponents.path == "/oauth/authorize/native",                //3 Проверяем, совпадает ли адрес запроса с адресом получения кода
-            let items = urlComponents.queryItems,                           //4 Проверяем, есть ли в URLComponents компоненты запроса (в них должен быть код). Компонент запроса URLQueryItem — это структура, которая содержит имя компонента name и его значение value
-            let codeItem = items.first(where: { $0.name == "code" })        //5 Ищем в массиве компонентов такой компонент, у которого значение name == code
-        {
-            return codeItem.value                                           //6 Если все проверки выше прошли успешно, возвращаем значение value найденного компонента. Иначе возвращаем nil
-        } else {
-            return nil
+            let url = navigationAction.request.url {
+            return presenterWebView?.code(from: url)
         }
+        return nil
     }
 }
 

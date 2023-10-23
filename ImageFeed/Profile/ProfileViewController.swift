@@ -1,15 +1,20 @@
 import UIKit
 import Kingfisher
 
+public protocol ProfileViewControllerProtocol: AnyObject{ // sprint_13
+    var presenterProfileView: ProfilePresenterProtocol? { get set } // sprint_13
+    func mainProfile()
+}
 
-final class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
+    
+    var presenterProfileView: ProfilePresenterProtocol?
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         mainProfile()
-        
     }
     
     private var fullNameUserLabel: UILabel?
@@ -17,8 +22,7 @@ final class ProfileViewController: UIViewController {
     private var messageTextUserLabel: UILabel?
     private var profileImageServiceObserver: NSObjectProtocol?
     private let profileService = ProfileService.shared
-    private let webVVC = WebViewViewController.shared
-
+    private var profilePresenter = ProfilePresenter()
     // Жестко установим цвет StatusBar в светлый
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -61,7 +65,6 @@ final class ProfileViewController: UIViewController {
             profileExitButton.translatesAutoresizingMaskIntoConstraints = false
             
             applyConstraints()
-            
         }
         
         //MARK: - Описание картинок в профиле
@@ -108,7 +111,6 @@ final class ProfileViewController: UIViewController {
         
         addSubview() // Вызов констрейнтов
         
-        
         //MARK: - Обновляем аватарку
         
         func updateAvatar() {
@@ -146,25 +148,17 @@ final class ProfileViewController: UIViewController {
             }
     }
     
-    //MARK: - Описание действия кнопки выхода из профиля пользователя (пока отключено)
+    //MARK: - Описание действия кнопки выхода из профиля пользователя
     
     @objc
     private func didTapExitProfileButton() {
         let alert = UIAlertController(title: "Выход", message: "Выйти из Вашего профиля?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
-            self.exitProfile()
+            profilePresenter.exitProfile()
         }))
         
         alert.addAction(UIAlertAction(title: "Нет", style: .default))
         self.present(alert, animated: true)
-    }
-    
-    private func exitProfile(){
-        OAuth2TokenStorage.shared.token = nil
-        webVVC.webViewClean()
-        guard let window = UIApplication.shared.windows.first else {fatalError("Invalid Configuration")}
-        window.rootViewController = SplashViewController()
-        window.makeKeyAndVisible()
     }
 }
